@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:moe_flutter_core/moe_flutter_core.dart';
+
 /// Configuration for MOE Auth package.
 class MoeAuthConfig {
   final String loginEndpoint;

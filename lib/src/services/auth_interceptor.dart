@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:moe_flutter_core/moe_flutter_core.dart' hide TokenInterceptor;
+import 'package:moe_flutter_core/moe_flutter_core.dart';
 import 'package:moe_flutter_auth/src/config/auth_config.dart';
-import 'package:moe_flutter_auth/src/events/auth_events.dart';
+import 'package:moe_flutter_auth/src/services/auth_repository.dart';
 import 'package:moe_flutter_auth/src/services/token_interceptor.dart';
 
 /// Auth interceptor — injects Bearer token + handles 401.
 ///
-/// Extends [TokenInterceptor], adds 401 event emission.
+/// Extends [TokenInterceptor] from core, adds 401 event emission.
 class AuthInterceptor extends TokenInterceptor {
   final Ref _ref;
 
@@ -18,15 +18,13 @@ class AuthInterceptor extends TokenInterceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     if (err.response?.statusCode == 401) {
       // Clear token
-      _clearToken();
+      _storage.delete(_ref.read(authConfigProvider).tokenKey);
       // Broadcast event — router redirect to login
       _ref.read(moeEventBusProvider.notifier).emit(const AuthExpiredEvent());
     }
     super.onError(err, handler);
   }
-
-  Future<void> _clearToken() async {
-    final storage = _ref.read(secureStorageServiceProvider);
-    await storage.delete(_ref.read(authConfigOverrideProvider).tokenKey);
-  }
 }
+
+// Re-export AuthExpiredEvent for the interceptor
+export 'package:moe_flutter_auth/src/events/auth_events.dart';
