@@ -9,7 +9,7 @@ dependencies:
   moe_flutter_auth:
     git:
       url: https://github.com/mindofemanizer/MOE-Flutter-Auth.git
-      ref: main
+      ref: master
 ```
 
 ## Usage
