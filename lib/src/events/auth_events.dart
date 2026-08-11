@@ -1,5 +1,7 @@
 import 'package:moe_flutter_core/moe_flutter_core.dart';
 
+import 'package:moe_flutter_auth/src/models/user_model.dart';
+
 /// Auth events for cross-module communication via MoeEventBus.
 ///
 /// See STRATEGI_PACKAGE.md Pasal 4.3 — Event Pattern.
@@ -25,6 +27,3 @@ class AuthRegisterEvent extends MoeEvent {
   final UserModel user;
   const AuthRegisterEvent(this.user);
 }
-
-// Re-export UserModel for convenience
-export 'package:moe_flutter_auth/src/models/user_model.dart';

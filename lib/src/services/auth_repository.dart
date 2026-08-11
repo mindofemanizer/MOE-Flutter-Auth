@@ -1,6 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:moe_flutter_core/moe_flutter_core.dart';
 import 'package:moe_flutter_auth/src/models/auth_dto.dart';
 import 'package:moe_flutter_auth/src/models/user_model.dart';
