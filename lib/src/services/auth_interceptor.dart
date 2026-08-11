@@ -18,7 +18,7 @@ class AuthInterceptor extends TokenInterceptor {
   void onError(DioException err, ErrorInterceptorHandler handler) {
     if (err.response?.statusCode == 401) {
       // Clear token
-      _storage.delete(_ref.read(authConfigProvider).tokenKey);
+      _storage.delete(_ref.read(authConfigOverrideProvider).tokenKey);
       // Broadcast event — router redirect to login
       _ref.read(moeEventBusProvider.notifier).emit(const AuthExpiredEvent());
     }
