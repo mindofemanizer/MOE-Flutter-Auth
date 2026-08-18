@@ -1,6 +1,6 @@
 # MOE-Flutter-Auth
 
-Auth package for MOE Flutter ecosystem — login, register, OTP, Google OAuth, session, token management.
+Auth package for MOE Flutter ecosystem â€” login, register, OTP, Google OAuth, session, token management.
 
 ## Installation
 
@@ -9,7 +9,7 @@ dependencies:
   moe_flutter_auth:
     git:
       url: https://github.com/mindofemanizer/MOE-Flutter-Auth.git
-      ref: master
+      ref: v1.0.0
 ```
 
 ## Usage
@@ -100,9 +100,9 @@ ref.read(authSessionProvider.notifier).logout();
 // listen to auth events from other packages
 ref.listen(moeEventBusProvider, (prev, event) {
   if (event is AuthExpiredEvent) {
-    // token expired — cleanup
+    // token expired â€” cleanup
   } else if (event is AuthLoginEvent) {
-    // user logged in — load profile
+    // user logged in â€” load profile
   }
 });
 ```
