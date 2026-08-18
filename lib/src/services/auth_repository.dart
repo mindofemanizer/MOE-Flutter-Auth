@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:moe_flutter_core/moe_flutter_core.dart';
 import 'package:moe_flutter_auth/src/models/auth_dto.dart';
@@ -30,10 +29,12 @@ class AuthRepository {
     } on DioException catch (e) {
       return Err(mapDioErrorToFailure(e));
     } catch (e) {
-      return Err(AppFailure(
-        type: FailureType.unknown,
-        message: e.toString(),
-      ));
+      return Err(
+        AppFailure(
+          type: FailureType.unknown,
+          message: e.toString(),
+        ),
+      );
     }
   }
 
@@ -51,10 +52,12 @@ class AuthRepository {
     } on DioException catch (e) {
       return Err(mapDioErrorToFailure(e));
     } catch (e) {
-      return Err(AppFailure(
-        type: FailureType.unknown,
-        message: e.toString(),
-      ));
+      return Err(
+        AppFailure(
+          type: FailureType.unknown,
+          message: e.toString(),
+        ),
+      );
     }
   }
 
@@ -65,17 +68,18 @@ class AuthRepository {
     try {
       final response = await _dio.get('/me');
       final user = UserModel.fromJson(
-        (response.data as Map<String, dynamic>)['user']
-            as Map<String, dynamic>,
+        (response.data as Map<String, dynamic>)['user'] as Map<String, dynamic>,
       );
       return Ok(user);
     } on DioException catch (e) {
       return Err(mapDioErrorToFailure(e));
     } catch (e) {
-      return Err(AppFailure(
-        type: FailureType.unknown,
-        message: e.toString(),
-      ));
+      return Err(
+        AppFailure(
+          type: FailureType.unknown,
+          message: e.toString(),
+        ),
+      );
     }
   }
 

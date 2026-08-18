@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:moe_flutter_core/moe_flutter_core.dart';
 import 'package:moe_flutter_auth/src/config/auth_config.dart';
 import 'package:moe_flutter_auth/src/events/auth_events.dart';
-import 'package:moe_flutter_auth/src/models/user_model.dart';
 
 /// Auth session state.
 sealed class AuthState {
@@ -49,9 +48,8 @@ class AuthSessionNotifier extends Notifier<AuthState> {
     final config = ref.read(authConfigOverrideProvider);
     final storage = ref.read(secureStorageServiceProvider);
     final token = await storage.read(config.tokenKey);
-    state = token != null
-        ? const AuthAuthenticated()
-        : const AuthUnauthenticated();
+    state =
+        token != null ? const AuthAuthenticated() : const AuthUnauthenticated();
   }
 
   /// Call after login/register success (token already saved).

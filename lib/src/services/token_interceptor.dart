@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:moe_flutter_core/moe_flutter_core.dart';
 
@@ -10,6 +9,8 @@ import 'package:moe_flutter_core/moe_flutter_core.dart';
 class TokenInterceptor extends Interceptor {
   final SecureStorageService _storage;
   final String _tokenKey;
+
+  SecureStorageService get storage => _storage;
 
   TokenInterceptor(this._storage, this._tokenKey);
 

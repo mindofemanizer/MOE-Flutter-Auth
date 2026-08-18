@@ -4,7 +4,6 @@ import 'package:moe_flutter_core/moe_flutter_core.dart';
 import 'package:moe_flutter_auth/src/config/auth_config.dart';
 import 'package:moe_flutter_auth/src/events/auth_events.dart';
 import 'package:moe_flutter_auth/src/models/auth_dto.dart';
-import 'package:moe_flutter_auth/src/models/user_model.dart';
 import 'package:moe_flutter_auth/src/providers/auth_session.dart';
 import 'package:moe_flutter_auth/src/services/auth_repository.dart';
 
@@ -53,7 +52,9 @@ class LoginNotifier extends StateNotifier<AuthOperationState> {
 
     switch (result) {
       case Ok(:final data):
-        _ref.read(authSessionProvider.notifier).setAuthenticated(user: data.user);
+        _ref
+            .read(authSessionProvider.notifier)
+            .setAuthenticated(user: data.user);
         _ref.read(moeEventBusProvider.notifier).emit(AuthLoginEvent(data.user));
         state = AuthSuccess(data.user);
       case Err(:final failure):
@@ -86,8 +87,12 @@ class RegisterNotifier extends StateNotifier<AuthOperationState> {
 
     switch (result) {
       case Ok(:final data):
-        _ref.read(authSessionProvider.notifier).setAuthenticated(user: data.user);
-        _ref.read(moeEventBusProvider.notifier).emit(AuthRegisterEvent(data.user));
+        _ref
+            .read(authSessionProvider.notifier)
+            .setAuthenticated(user: data.user);
+        _ref
+            .read(moeEventBusProvider.notifier)
+            .emit(AuthRegisterEvent(data.user));
         state = AuthSuccess(data.user);
       case Err(:final failure):
         state = AuthError(failure);

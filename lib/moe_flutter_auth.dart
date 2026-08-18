@@ -4,6 +4,7 @@
 /// ```dart
 /// import 'package:moe_flutter_auth/moe_flutter_auth.dart';
 /// ```
+library;
 
 // Config
 export 'src/config/auth_config.dart';
